@@ -1,0 +1,101 @@
+<html>
+<head><script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script></head>
+<body>
+<select name="" id="select" multiple="multiple">
+  <option>item-1</option>
+  <option>item-2</option>
+  <option>item-3</option>
+  <option>item-4</option>
+  <option>item-5</option>
+  <option>item-6</option>
+  <option>item-7</option>
+  <option>item-8</option>
+  <option>item-9</option>
+  <option>item-10</option>
+  <option>item-11</option>
+  <option>item-12</option>
+  <option>item-13</option>
+  <option>item-14</option>
+  <option>item-15</option>
+  <option>item-16</option>
+  <option>item-17</option>
+  <option>item-18</option>
+  <option>item-19</option>
+  <option>item-20</option>
+  <option>item-21</option>
+  <option>item-22</option>
+  <option>item-23</option>
+  <option>item-24</option>
+  <option>item-25</option>
+  <option>item-26</option>
+  <option>item-27</option>
+  <option>item-28</option>
+  <option>item-29</option>
+  <option>item-30</option>
+  <option>item-31</option>
+  <option>item-32</option>
+  <option>item-33</option>
+  <option>item-34</option>
+  <option>item-35</option>
+  <option>item-36</option>
+  <option>item-37</option>
+  <option>item-38</option>
+  <option>item-39</option>
+  <option>item-40</option>
+</select>
+
+<button id="btnScroll">Scroll</button>
+
+
+
+<table name="mytable" id="mytable">
+  <thead>
+    <tr><th>Date</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+		<td>2021/09/01</td>
+		<td>value3</td>
+	</tr>
+    <tr>
+		<td>2020/07/02</td>
+		<td>value6</td>
+	</tr>
+    <tr>
+		<td>2020/08/01</td>
+		<td>value9</td>
+	</tr>
+  </tbody>
+</table>
+
+<button id="btnSort">Sort</button>
+<script>
+$('button#btnScroll').on('click', function() {
+  var option = $('select').find("option:contains('item-30')");
+  $('select').animate({ scrollTop: $('select').scrollTop() + (option.offset().top - $('select').offset().top) }, 100);
+})
+
+$('button#btnSort').on('click', function() {
+  sortTable();
+})
+function sortTable(){
+  var rows = $('#mytable tbody  tr').get();
+  rows.sort(function(a, b) {
+  var A = new Date($(a).children('td').eq(0).text().trim());
+  var B = new Date($(b).children('td').eq(0).text().trim());
+  if(A < B) {
+    return -1;
+  }
+  if(A > B) {
+    return 1;
+  }
+  return 0;
+ 
+  });
+	
+  $.each(rows, function(index, row) {
+    $('#mytable').children('tbody').append(row);
+  });
+}
+</script>
+</html>
